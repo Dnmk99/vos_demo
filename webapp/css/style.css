@@ -1,0 +1,109 @@
+/* Enter your custom styles here */
+.myText[data-myClass="Red"] {
+    color:#cc1919;
+}
+.myText[data-myClass="Green"] {
+    color: green;
+}
+.myText[data-myClass="Orange"] {
+    color: rgb(200, 130, 0);
+}
+.asnText[data-myClass="Red"] {
+    color:#cc1919;
+}
+.asnText[data-myClass="Green"] {
+    color: green;
+}
+.dateTxt[data-myClass="Red"] {
+    color:#cc1919;
+}
+.dateTxt[data-myClass="Green"] {
+    color: green;
+}
+.dateTxt[data-myClass="Orange"] {
+    color: rgb(200, 130, 0);
+}
+.helper{
+    margin-top: 0.1rem;
+    border: 1px solid red;
+}
+.helper2{
+    margin-top: 0.1rem;
+    border: 1px solid blue;
+}
+.row{
+    padding: 0.4rem;
+}
+.row2{
+    border-bottom: 1px solid #556b82;
+}
+.row4{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.2rem;
+}
+.row1text{
+    padding-right: 1rem;
+    font-size: large;
+}
+.label{
+    color: #556b82;
+    padding-right: 0.5rem;
+}
+.huText{
+    font-size: xx-large;
+}
+.icon{
+    padding-right: 0.2rem;
+    font-size: xx-large;
+    color: rgba(49, 49, 49, 0.747);
+}
+.progressBar{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.TxtTotal{
+    font-size: xx-large;
+    margin-left: 0.5rem;
+    color: #556b82;
+}
+.iconTxtRemain{
+    font-size: xx-large;
+    margin-left: 0.5rem;
+    /* color: black;*/
+} 
+.loadedBtn{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.asnTrue{
+    color: green;
+}
+.logo{
+    padding-right: 0.5rem;
+}
+.borderBot{
+    border-bottom: 1px solid #556b82;
+}
+.hidden{
+    display: none;
+}
+.emptyPageIcon{
+    font-size: xxx-large;
+    color: #556b82;;
+    padding-bottom: 0.5rem;
+}
+.emptyPageText{
+    font-size: large;
+    padding-bottom: 2rem;
+}
+.fragCont{
+    border: 1px solid #00000048;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+}

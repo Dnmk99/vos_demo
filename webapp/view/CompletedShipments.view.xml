@@ -1,0 +1,126 @@
+<mvc:View controllerName="demo.controller.CompletedShipments" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" titleAlignment="Center">
+        <customHeader>
+            <Bar id="headerBar">
+                <contentLeft> 
+                    <Button id="backButton" press="onNavigateBack" type="Back"></Button>
+                </contentLeft>
+                <contentMiddle></contentMiddle>   
+                <contentRight>
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <VBox id="emptyPage">
+            <VBox id="emptyPageDisplayCont" alignItems="Center">
+            </VBox>
+            <HBox id="emptyPageBtns" width="100%" justifyContent="SpaceAround">
+                <Button id="navBackBtn" text="Back" press="onNavigateBack" />
+                <Button id="refreshBtn" text="Refresh" press="onRefresh"/>
+            </HBox>
+        </VBox>
+        <VBox id="mainContainer" width="100%" height="0%" alignItems="Center" items="{path: '/CompletedShipments'}">
+            <f:Card id="card" class="sapUiSmallMargin" width="60rem" height="15rem" headerPosition="Bottom">
+                <f:content>
+                    <VBox id="cardInner" width="100%" height="100%">
+                        <HBox id="row1" width="100%" height="2rem" class='row'>
+                            <HBox id="row1-1" class="" width="30rem" height="1.5rem">
+                                <HBox id="logoBox" width="4rem" height="3rem">
+                                    <Image id="logo" class="logo" width="100%" height="100%" src="{logo}"/>
+                                </HBox>
+                                <Text id="shipToPartyTxt" class="row1text borderBot" text="{shipToParty}" />
+                                <Link id="customerNameTxt" class="row1text borderBot" text="{customerName}"/>
+                            </HBox>
+                            <VBox id="row1-2" width="25rem">
+                                <HBox id="row1-2-1" class="" width="20rem" height="1.5rem">
+                                    <Text id="label1" class="label" text="Datum odeslání: " />
+                                    <Text id="shipmentDateTxt" text="{shipmentDate}" />
+                                </HBox>
+                                <HBox id="row1-2-2" class="" width="20rem" height="1.5rem">
+                                    <Text id="label2" class="label" text="Čas odeslání: " />
+                                    <Text id="shipmentTimeTxt" text="{shipmentTime}" />
+                                </HBox>
+                                <HBox id="row1-2-3" class="" width="20rem" height="1.5rem">
+                                    <Text id="label3" class="label" text="Čas k naložení: " />
+                                    <Text id="shipmentTimeLeftTxt" class="dateTxt" text="{shipmentTimeLeft}">
+                                        <customData>
+                                            <core:CustomData
+                                                key="myClass"
+                                                value="{=     
+                                                (${dateClass} === 'classRed' ) ? 
+                                                'Red' : (${dateClass} === 'classGreen') ? 
+                                                'Green' : (${dateClass} === 'classOrange') ? 
+                                                'Orange' : ''}"
+                                                    writeToDom="true"
+                                                />
+                                        </customData>
+                                    </Text>
+                                </HBox>
+                            </VBox>
+                            <VBox id="row1-3" width="10rem">
+                                <HBox id="row1-3-1" justifyContent="Start">
+                                    <Text id="label4" class="label" text="ASN: "/>
+                                    <Text id="asnText" class="asnTrue" text="Odesláno"/>
+                                </HBox>
+                                <HBox id="row1-3-2" justifyContent="Start">
+                                    <Text id="label5" class="label" text="Hala: "/>
+                                    <Text id="hallTxt" text="{hall}"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                        <HBox id="row2" class="row row2" width="100%" height="2rem" >
+                            
+                        </HBox>
+                        <HBox id="row3" class="row" width="100%" height="5rem" >
+                            <VBox id="row3-1" width="15rem" height="5rem" class="">
+                                <Text id="label6" class="label" text="Přepravce:"/>
+                                <Text id="shipperNameTxt" text="{shipperName}"/>
+                                <Text id="shipperNoTxt" text="{shipperNumber}"/>
+                                <Text id="serviceAgentTxt" text="{serviceAgent}"/>
+                            </VBox>
+                            <VBox id="row3-2" width="15rem" height="5rem" class="">
+                                <Text id="label7" class="label" text="Referenční číslo:"/>
+                                <Text id="referenceNumberTxt" text="{referenceNumber}"/>
+                            </VBox>
+                            <VBox id="row3-3" width="10rem" height="5rem" class="">
+                                <Text id="label8" class="label" text="Místo vykládky:"/>
+                                <Text id="unloadingPointTxt" text="{unloadingPoint}"/>
+                            </VBox>
+                            <VBox id="row3-4" width="10rem" height="5rem" class="">
+                                <Text id="label9" class="label" text="HU Celkem:"/>
+                                <HBox id="row3-4-1">
+                                    <core:Icon id="totalHuIcon" class="icon" src="sap-icon://product"></core:Icon>
+                                    <Text id="totalHuTxt" class="huText iconTxtTotal" text="{totalHu}"/>
+                                </HBox>
+                            </VBox>
+                            <VBox id="row3-5" width="10rem" height="5rem" class="">
+                                <Text id="label10" class="label" text="HU Zbývá:"/>
+                                <HBox id="row3-5-1">
+                                    <core:Icon id="huRemainIcon" class="icon" src="sap-icon://product"></core:Icon>
+                                    <Text id="huRemainTxt" class="iconTxtRemain myText" text="{openHu}">
+                                        <customData>
+                                            <core:CustomData key="myClass" value="{=     (${txtClass} === 'classRed' ) ? 
+                                                'Red' : (${txtClass} === 'classGreen') ? 
+                                                'Green' : (${txtClass} === 'classOrange') ? 
+                                                'Orange' : ''}" writeToDom="true" />
+                                        </customData>  
+                                    </Text>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                        <ProgressIndicator
+                            width="100%"
+                            id="pindicator"
+                            class="progressBar"
+                            percentValue="{loadProgress}"
+                            displayValue="{loadProgress}% Naloženo"
+                            showValue="true"
+                            state="{state}" />
+                        <HBox id="row4" class="row4" width="100%" height="auto" justifyContent="End">
+                            <Button id="loadedButton" class="loadedBtn" press="onLoadedPress" text=" {shipToParty} Odesláno" enabled="false"/>
+                        </HBox>
+                    </VBox>
+                </f:content>
+            </f:Card>
+        </VBox>
+    </Page>
+</mvc:View>
