@@ -58,6 +58,9 @@
     font-size: xx-large;
     color: rgba(49, 49, 49, 0.747);
 }
+.huStatus{
+    padding-left: 5rem;
+}
 .progressBar{
     margin-top: 1rem;
     margin-bottom: 1rem;

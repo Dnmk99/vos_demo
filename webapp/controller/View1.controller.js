@@ -1,4 +1,5 @@
 let timer;
+const browserLang = window.navigator.language;
 function dhm(ms) {
     const days = Math.floor(Number(ms) / (24 * 60 * 60 * 1000));
     const daysms = Number(ms) % (24 * 60 * 60 * 1000);
@@ -27,13 +28,13 @@ function main(dataObj, that) {
     shipmentsModel['oData'] = [];
     shipmentsModel.oData['Shipments'] = [];
     shipmentsModel.oData['CompletedShipments'] = [];
-    shipmentsModel.oData['Refresh'] = new Date().toLocaleTimeString('cs-CZ');
+    shipmentsModel.oData['Refresh'] = new Date().toLocaleTimeString(browserLang);
     let progress;
     for (const [key, value] of Object.entries(dataObj)) {
         //date
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const ms = value.Dptbg.match(/(\d+)/)[0];
-        const shipmentDate = new Date(Number(ms)).toLocaleDateString('cs-CZ', options);
+        const shipmentDate = new Date(Number(ms)).toLocaleDateString(browserLang, options);
         //time 
         const hours = value.Uptbg.slice(2, 4)
         const minutes = value.Uptbg.slice(5, 7);
@@ -100,10 +101,15 @@ function main(dataObj, that) {
         //asn state
         if (shipmentsObj.asnState == "true") {
             shipmentsObj.asnClass = "classGreen";
-            shipmentsObj.asnState = "Odesláno";
+            if(browserLang.includes('en'))shipmentsObj.asnState = "Sent"; 
+            if(browserLang.includes('cs'))shipmentsObj.asnState = "Odesláno";
+            if(browserLang.includes('de'))shipmentsObj.asnState = "Gesendet";
+            
         } else {
             shipmentsObj.asnClass = "classRed";
-            shipmentsObj.asnState = "Neodesláno";
+            if(browserLang.includes('en'))shipmentsObj.asnState = "Not sent"; 
+            if(browserLang.includes('cs'))shipmentsObj.asnState = "Neodesláno";
+            if(browserLang.includes('de'))shipmentsObj.asnState = "Nicht gesendet";
         }
         if (shipmentsObj.shipmentTimeLeftMs <= 1800000) { //30min
             shipmentsObj.dateClass = "classRed";
@@ -127,11 +133,12 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "demo/model/jsonData",
     "sap/ui/core/Fragment",
+    "sap/ui/model/resource/ResourceModel",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, jsonData, Fragment) {
+    function (Controller, jsonData, Fragment,ResourceModel) {
         "use strict";
         return Controller.extend("demo.controller.View1", {
             onInit: function () {
@@ -139,6 +146,13 @@ sap.ui.define([
                 const oModel = new sap.ui.model.json.JSONModel(this.data.returnData(26,80,61,5,0,98));
                 const dataObj = oModel.oData.Shipments;
                 const that = this;
+                sap.ui.getCore().getConfiguration().setLanguage(browserLang);
+                const oResourceModel = new ResourceModel({
+                    bundleName: "demo.i18n.i18n.properties",
+                    supportedLocales: ["", "de", "cs"],
+                    fallbackLocale: ""
+                });
+                sap.ui.getCore().setModel(oResourceModel, "i18n");
                 main(dataObj, that);
             },
             toggleFooter : function(oEvent) {
