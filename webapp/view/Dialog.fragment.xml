@@ -3,7 +3,7 @@
    xmlns:core="sap.ui.core" >
    <Dialog
       id="dialog"
-      title="Info o balení" titleAlignment="Center" 
+      title="Detail" titleAlignment="Center" 
       contentWidth="20rem" contentHeight="auto"
       draggable="false" type="Standard" showHeader="true">
         <content >
@@ -11,20 +11,20 @@
                  <Text id="fragText" class="fragText" text="{fragmentModel>/referenceNumber}"/>
             </VBox>
             <VBox id="cont1" class="fragCont " width="auto" height="100%">
-                <Title id="dispTitle" class="fragTitle" text="Disponent"/>
+                <Title id="dispTitle" class="fragTitle" text="{i18n>disponent}"/>
                 <Text id="fragText1" class="fragText" text="{fragmentModel>/disponent}"/>
             </VBox>
             <VBox id="cont2" class="fragCont " width="auto" height="100%">
-                <Title id="expTitle" class="fragTitle" text="Druh zásilky"/>
+                <Title id="expTitle" class="fragTitle" text="{i18n>packType}"/>
                 <Text id="fragText2" class="fragText" text="{fragmentModel>/packType}"/>
             </VBox>
             <VBox id="cont3" class="fragCont " width="auto" height="100%">
-                <Title id="infoTxt" class="fragTitle" text="Info o balení"/>
+                <Title id="infoTxt" class="fragTitle" text="{i18n>packInfo}"/>
                 <Text id="fragText3" class="fragText" text="{fragmentModel>/packInfo}"/>
             </VBox>
         </content>
         <endButton>
-            <Button id="closeDialogBtn" text="Close" press=".onCloseDialog"/>
+            <Button id="closeDialogBtn" text="{i18n>backBtn}" press=".onCloseDialog"/>
         </endButton>
    </Dialog>
 </core:FragmentDefinition>
