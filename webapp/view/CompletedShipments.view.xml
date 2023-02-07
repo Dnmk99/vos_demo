@@ -18,8 +18,8 @@
                 <Button id="refreshBtn" text="Aktualizovat" press="onRefresh"/>
             </HBox>
         </VBox>
-        <VBox id="mainContainer" width="100%" height="100%" alignItems="Center" items="{path: '/Shipments'}">
-            <f:Card id="card" class="sapUiSmallMargin" width="100%" height="15rem" headerPosition="Bottom">
+        <VBox id="mainContainer" width="100%" height="0%" alignItems="Center" items="{path: '/CompletedShipments'}">
+            <f:Card id="card" class="sapUiSmallMargin" width="60rem" height="15rem" headerPosition="Bottom">
                 <f:content>
                     <VBox id="cardInner" width="100%" height="100%">
                         <HBox id="row1" width="100%" height="2rem" class='row'>
@@ -27,8 +27,8 @@
                                 <HBox id="logoBox" width="4rem" height="3rem">
                                     <Image id="logo" class="logo" width="100%" height="100%" src="{logo}"/>
                                 </HBox>
-                                <Link id="shipToPartyTxt" press="onOpenDialog" class="row1text borderBot" text="{shipToParty}" />
-                                <Text id="customerNameTxt" class="row1text borderBot" text="{customerName}"/>
+                                <Text id="shipToPartyTxt" class="row1text borderBot" text="{shipToParty}" />
+                                <Link id="customerNameTxt" class="row1text borderBot" text="{customerName}"/>
                             </HBox>
                             <VBox id="row1-2" width="25rem">
                                 <HBox id="row1-2-1" class="" width="20rem" height="1.5rem">
@@ -59,20 +59,10 @@
                             <VBox id="row1-3" width="10rem">
                                 <HBox id="row1-3-1" justifyContent="Start">
                                     <Text id="label4" class="label" text="ASN: "/>
-                                    <Text id="asnText" class="asnTtrue" text="{i18n>asnTrue}">
-                                        <customData>
-                                            <core:CustomData
-                                                key="myClass"
-                                                value="{= (${asnClass} === 'classRed' ) ? 
-                                                    'Red' : (${asnClass} === 'classGreen') ? 
-                                                    'Green' : ''}"
-                                                    writeToDom="true"
-                                            />
-                                        </customData>
-                                    </Text>
+                                    <Text id="asnText" class="asnTrue" text="{i18n>asnTrue}"/>
                                 </HBox>
                                 <HBox id="row1-3-2" justifyContent="Start">
-                                    <Text id="label5" class="label" text="Hala: "/>
+                                    <Text id="label5" class="label" text="{i18n>hall}: "/>
                                     <Text id="hallTxt" text="{hall}"/>
                                 </HBox>
                             </VBox>
@@ -88,20 +78,18 @@
                                 <Text id="serviceAgentTxt" text="{serviceAgent}"/>
                             </VBox>
                             <VBox id="row3-2" width="15rem" height="5rem" class="">
-                                <Text id="label7" class="label" text="{i18n>refNumber}:"/>
+                                <Text id="label7" class="label" text="Referenční číslo:"/>
                                 <Text id="referenceNumberTxt" text="{referenceNumber}"/>
                             </VBox>
                             <VBox id="row3-3" width="10rem" height="5rem" class="">
-                                <Text id="label8" class="label" text="{i18n>unloadingPoint}:"/>
+                                <Text id="label8" class="label" text="{i18n>refNumber}:"/>
                                 <Text id="unloadingPointTxt" text="{unloadingPoint}"/>
                             </VBox>
                             <VBox id="row3-4" width="10rem" height="5rem" class="">
                                 <Text id="label9" class="label" text="{i18n>totalHu}:"/>
                                 <HBox id="row3-4-1">
                                     <core:Icon id="totalHuIcon" class="icon" src="sap-icon://product"></core:Icon>
-                                    <Text id="totalHuTxt" class="huText iconTxtTotal" text="{totalHu}">
-                                        
-                                    </Text>
+                                    <Text id="totalHuTxt" class="huText iconTxtTotal" text="{totalHu}"/>
                                 </HBox>
                             </VBox>
                             <VBox id="row3-5" width="10rem" height="5rem" class="">
@@ -128,7 +116,7 @@
                             showValue="true"
                             state="{state}" />
                         <HBox id="row4" class="row4" width="100%" height="auto" justifyContent="End">
-                            <Button id="loadedButton" class="loadedBtn" press="onLoadedPress" enabled="false" text="{i18n>confirmLoading} {shipToParty}"/>
+                            <Button id="loadedButton" class="loadedBtn" press="onLoadedPress" text=" {shipToParty} Odesláno" enabled="false"/>
                         </HBox>
                     </VBox>
                 </f:content>
