@@ -1,5 +1,5 @@
 <mvc:View controllerName="demo.controller.CompletedShipments" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns="sap.m">
-    <Page id="page" title="{i18n>title}" titleAlignment="Center">
+    <Page id="page" title="{i18n>titlePage2}" titleAlignment="Center">
         <customHeader>
             <Bar id="headerBar">
                 <contentLeft> 
@@ -14,8 +14,8 @@
             <VBox id="emptyPageDisplayCont" alignItems="Center">
             </VBox>
             <HBox id="emptyPageBtns" width="100%" justifyContent="SpaceAround">
-                <Button id="navBackBtn" text="Back" press="onNavigateBack" />
-                <Button id="refreshBtn" text="Refresh" press="onRefresh"/>
+                <Button id="navBackBtn" text="Zpět" press="onNavigateBack" />
+                <Button id="refreshBtn" text="Aktualizovat" press="onRefresh"/>
             </HBox>
         </VBox>
         <VBox id="mainContainer" width="100%" height="0%" alignItems="Center" items="{path: '/CompletedShipments'}">

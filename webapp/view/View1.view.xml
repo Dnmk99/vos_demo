@@ -10,12 +10,12 @@
                     <Title id="title1pg1" text="{i18n>title}" />
                 </contentMiddle>
                 <contentRight>
-                    <Button id='nextViewButton' text="Hotové zakázky" press="onNextView"></Button>
+                    <Button id='nextViewButton' text="Odeslané expedice" press="onNextView"></Button>
                 </contentRight>
             </Bar>
         </customHeader>
         <VBox id="mainContainer" width="100%" height="100%" alignItems="Center" items="{path: '/Shipments'}">
-            <f:Card id="card" class="sapUiSmallMargin" width="60rem" height="15rem" headerPosition="Bottom">
+            <f:Card id="card" class="sapUiSmallMargin" width="100%" height="15rem" headerPosition="Bottom">
                 <f:content>
                     <VBox id="cardInner" width="100%" height="100%">
                         <HBox id="row1" width="100%" height="2rem" class='row'>
