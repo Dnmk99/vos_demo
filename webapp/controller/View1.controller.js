@@ -1,5 +1,7 @@
 let timer;
-const browserLang = window.navigator.language;
+let browserLang = window.navigator.language;
+let windowWidth = window.innerWidth;
+console.log(windowWidth);
 function dhm(ms) {
     const days = Math.floor(Number(ms) / (24 * 60 * 60 * 1000));
     const daysms = Number(ms) % (24 * 60 * 60 * 1000);
@@ -29,6 +31,7 @@ function main(dataObj, that) {
     shipmentsModel.oData['Shipments'] = [];
     shipmentsModel.oData['CompletedShipments'] = [];
     shipmentsModel.oData['Refresh'] = new Date().toLocaleTimeString(browserLang);
+    console.log(shipmentsModel.oData.Refresh);
     let progress;
     for (const [key, value] of Object.entries(dataObj)) {
         //date
@@ -127,6 +130,7 @@ function main(dataObj, that) {
         }else shipmentsModel.oData.CompletedShipments.push(el);
     });
     that.getView().setModel(shipmentsModel);
+    console.log(shipmentsModel);
     sap.ui.getCore().setModel(shipmentsModel, "globalModel");
 }
 sap.ui.define([
@@ -248,7 +252,6 @@ sap.ui.define([
                     }
                 }
                 sList.forEach(el => {
-                    console.log(el);
                     defaultModel.oData.selShipment.push(el);
                 });
                 if (!this.pDialog) {
@@ -262,6 +265,27 @@ sap.ui.define([
                     const fragmentModel = new sap.ui.model.json.JSONModel(selShipment);
                     oDialog.setModel(fragmentModel, "fragmentModel");
                     oDialog.open();
+                    const bckBtn = this.oDialog.byId('closeDialogBtn');
+                    const dispTitle = this.oDialog.byId('dispTitle');
+                    const packTypeTxt = this.oDialog.byId('packTypeTxt');
+                    const packInfoTxt = this.oDialog.byId('packInfoTxt');
+                    console.log(packInfoTxt);
+                    if(browserLang.includes('en')) dispTitle.setText('Disponent');
+                    if(browserLang.includes('cs')) dispTitle.setText('Disponent');
+                    if(browserLang.includes('de')) dispTitle.setText('Disponent');
+                    //
+                    if(browserLang.includes('en')) packTypeTxt.setText('Package type');
+                    if(browserLang.includes('cs')) packTypeTxt.setText('Typ zásilky');
+                    if(browserLang.includes('de')) packTypeTxt.setText('Art der verpackung');
+                    //
+                    if(browserLang.includes('en')) packInfoTxt.setText('Package info');
+                    if(browserLang.includes('cs')) packInfoTxt.setText('Info o balení');
+                    if(browserLang.includes('de')) packInfoTxt.setText('Paket-Infos');
+                    //
+                    if(browserLang.includes('en')) bckBtn.setText('Close');
+                    if(browserLang.includes('cs')) bckBtn.setText('Zavřít');
+                    if(browserLang.includes('de')) bckBtn.setText('Schließen');
+
                 });
             },
             onCloseDialog: function () {

@@ -1,5 +1,6 @@
 let interval;
 let busyDialog = new sap.m.BusyDialog({});
+let browserLanguage = window.navigator.language;
 function getData(that){
     const globalModel = sap.ui.getCore().getModel("globalModel");
     const mainContainer = that.getView().byId('mainContainer');
@@ -15,11 +16,12 @@ function getData(that){
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
+    "sap/ui/model/resource/ResourceModel",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,History) {
+    function (Controller,History,ResourceModel) {
         "use strict";
         return Controller.extend("demo.controller.CompletedShipments", {
             onInit: function () {
@@ -29,7 +31,10 @@ sap.ui.define([
                 const noDataContainer = this.getView().byId('emptyPage');
                 const noDataDisplayCont = this.getView().byId('emptyPageDisplayCont');
                 const icon = new sap.ui.core.Icon({src: 'sap-icon://message-warning'});
-                const text = new sap.m.Text({text: 'Nenalezena žádná data'});
+                const text = new sap.m.Text({});
+                if(browserLanguage.includes('cs')) text.setText('Nenalezena žádná data');
+                if(browserLanguage.includes('de')) text.setText('Keine daten gefunden');
+                if(browserLanguage.includes('en')) text.setText('No data found');
                 noDataContainer.setWidth('100%');
                 noDataContainer.setHeight('100%');
                 noDataContainer.setJustifyContent('Center');
@@ -42,11 +47,19 @@ sap.ui.define([
             },
             handleRouteMatched : function (oEvent) { //triggers everytime page is displayed
                 const that = this;
+                sap.ui.getCore().getConfiguration().setLanguage(browserLanguage);
+                const oResourceModel = new ResourceModel({
+                    bundleName: "demo.i18n.i18n.properties",
+                    supportedLocales: ["", "de", "cs"],
+                    fallbackLocale: ""
+                });
+                console.log(oResourceModel);
+                sap.ui.getCore().setModel(oResourceModel, "i18n");
                 setInterval(() => {
                     getData(that);
                 }, 1000);
             },
-            onNavigateBack(){
+            onNavigateBack : function(){
                 window.clearInterval(interval);
                 let oHistory, sPreviousHash;
                 oHistory = History.getInstance();
@@ -59,14 +72,12 @@ sap.ui.define([
 			    }
             },
             onRefresh : function(){
-                console.log(this.getView().getModel());
                 busyDialog.open();
                 setTimeout(() => {
-                    busyDialog.close();
                     if(this.getView().getModel() != undefined || this.getView().getModel() != null){
                         this.getView().getModel().updateBindings();
-                        console.log(this.getView().getModel());
                     }
+                    busyDialog.close();
                 }, 1000);
             }
         });

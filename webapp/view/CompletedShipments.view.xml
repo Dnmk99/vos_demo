@@ -14,8 +14,8 @@
             <VBox id="emptyPageDisplayCont" alignItems="Center">
             </VBox>
             <HBox id="emptyPageBtns" width="100%" justifyContent="SpaceAround">
-                <Button id="navBackBtn" text="Zpět" press="onNavigateBack" />
-                <Button id="refreshBtn" text="Aktualizovat" press="onRefresh"/>
+                <Button id="navBackBtn" text="{i18n>backBtn}" press="onNavigateBack" />
+                <Button id="refreshBtn" text="{i18n>refreshBtn}" press="onRefresh"/>
             </HBox>
         </VBox>
         <VBox id="mainContainer" width="100%" height="0%" alignItems="Center" items="{path: '/CompletedShipments'}">

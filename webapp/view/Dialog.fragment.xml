@@ -11,20 +11,20 @@
                  <Text id="fragText" class="fragText" text="{fragmentModel>/referenceNumber}"/>
             </VBox>
             <VBox id="cont1" class="fragCont " width="auto" height="100%">
-                <Title id="dispTitle" class="fragTitle" text="{i18n>disponent}"/>
+                <Title id="dispTitle" class="fragTitle" text=""/>
                 <Text id="fragText1" class="fragText" text="{fragmentModel>/disponent}"/>
             </VBox>
             <VBox id="cont2" class="fragCont " width="auto" height="100%">
-                <Title id="expTitle" class="fragTitle" text="{i18n>packType}"/>
+                <Title id="packTypeTxt" class="fragTitle" text=""/>
                 <Text id="fragText2" class="fragText" text="{fragmentModel>/packType}"/>
             </VBox>
             <VBox id="cont3" class="fragCont " width="auto" height="100%">
-                <Title id="infoTxt" class="fragTitle" text="{i18n>packInfo}"/>
+                <Title id="packInfoTxt" class="fragTitle" text=""/>
                 <Text id="fragText3" class="fragText" text="{fragmentModel>/packInfo}"/>
             </VBox>
         </content>
         <endButton>
-            <Button id="closeDialogBtn" text="{i18n>backBtn}" press=".onCloseDialog"/>
+            <Button id="closeDialogBtn" text="" press=".onCloseDialog"/>
         </endButton>
    </Dialog>
 </core:FragmentDefinition>
