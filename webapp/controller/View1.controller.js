@@ -44,7 +44,6 @@ function checkOrientation() {
 window.addEventListener("orientationchange", checkOrientation);
 window.addEventListener("resize", checkOrientation);
 checkOrientation();
-
 function dhm(ms) {
     const days = Math.floor(Number(ms) / (24 * 60 * 60 * 1000));
     const daysms = Number(ms) % (24 * 60 * 60 * 1000);
@@ -63,7 +62,7 @@ function sortArray( a, b ) {
       return 1;
     }
     return 0;
-  }
+}
 function stopTimer() {
     clearInterval(timer);
 }
