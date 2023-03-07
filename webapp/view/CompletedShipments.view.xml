@@ -18,19 +18,19 @@
                 <Button id="refreshBtn" text="{i18n>refreshBtn}" press="onRefresh"/>
             </HBox>
         </VBox>
-        <VBox id="mainContainer" width="100%" height="0%" alignItems="Center" items="{path: '/CompletedShipments'}">
-            <f:Card id="card" class="sapUiSmallMargin" width="60rem" height="15rem" headerPosition="Bottom">
+        <VBox id="mainContainer" class="mainContainer" width="98%" items="{path: '/CompletedShipments'}">
+            <f:Card id="card" class="sapUiSmallMargin" width="100%" height="90%" headerPosition="Bottom">
                 <f:content>
                     <VBox id="cardInner" width="100%" height="100%">
                         <HBox id="row1" width="100%" height="2rem" class='row'>
-                            <HBox id="row1-1" class="" width="30rem" height="1.5rem">
+                            <HBox id="row1-1" class="" width="42%" height="1.5rem">
                                 <HBox id="logoBox" width="4rem" height="3rem">
                                     <Image id="logo" class="logo" width="100%" height="100%" src="{logo}"/>
                                 </HBox>
                                 <Text id="shipToPartyTxt" class="row1text borderBot" text="{shipToParty}" />
                                 <Link id="customerNameTxt" class="row1text borderBot" text="{customerName}"/>
                             </HBox>
-                            <VBox id="row1-2" width="25rem">
+                            <VBox id="row1-2" width="35%">
                                 <HBox id="row1-2-1" class="" width="20rem" height="1.5rem">
                                     <Text id="label1" class="label" text="{i18n>shipmentDate}: " />
                                     <Text id="shipmentDateTxt" class="val" text="{shipmentDate}" />
@@ -56,7 +56,7 @@
                                     </Text>
                                 </HBox>
                             </VBox>
-                            <VBox id="row1-3" width="10rem">
+                            <VBox id="row1-3" width="23%">
                                 <HBox id="row1-3-1" justifyContent="Start">
                                     <Text id="label4" class="label" text="ASN: "/>
                                     <Text id="asnText" class="asnTrue" text="{i18n>asnTrue}"/>
@@ -71,28 +71,28 @@
                             
                         </HBox>
                         <HBox id="row3" class="row" width="100%" height="5rem" >
-                            <VBox id="row3-1" width="15rem" height="5rem" class="">
+                            <VBox id="row3-1" width="25%" height="5rem" class="">
                                 <Text id="label6" class="label" text="{i18n>shipperName}:"/>
                                 <Text id="shipperNameTxt" class="val" text="{shipperName}"/>
                                 <Text id="shipperNoTxt" class="val" text="{shipperNumber}"/>
                                 <Text id="serviceAgentTxt" class="val" text="{serviceAgent}"/>
                             </VBox>
-                            <VBox id="row3-2" width="15rem" height="5rem" class="">
-                                <Text id="label7" class="label" text="Referenční číslo:"/>
+                            <VBox id="row3-2" width="17%" height="5rem" class="">
+                                <Text id="label7" class="label" text="{i18n>refNumber}:"/>
                                 <Text id="referenceNumberTxt" class="val" text="{referenceNumber}"/>
                             </VBox>
-                            <VBox id="row3-3" width="10rem" height="5rem" class="">
-                                <Text id="label8" class="label" text="{i18n>refNumber}:"/>
+                            <VBox id="row3-3" width="35%" height="5rem" class="">
+                                <Text id="label8" class="label" text="{i18n>unloadingPoint}:"/>
                                 <Text id="unloadingPointTxt" class="val" text="{unloadingPoint}"/>
                             </VBox>
-                            <VBox id="row3-4" width="10rem" height="5rem" class="">
+                            <VBox id="row3-4" class="" width="11.5%"  height="5rem">
                                 <Text id="label9" class="label" text="{i18n>totalHu}:"/>
                                 <HBox id="row3-4-1">
                                     <core:Icon id="totalHuIcon" class="icon" src="sap-icon://product"></core:Icon>
                                     <Text id="totalHuTxt" class="huText iconTxtTotal" text="{totalHu}"/>
                                 </HBox>
                             </VBox>
-                            <VBox id="row3-5" width="10rem" height="5rem" class="">
+                            <VBox id="row3-5" width="11.5%" height="5rem" class="">
                                 <Text id="label10" class="label" text="{i18n>openHu}:"/>
                                 <HBox id="row3-5-1">
                                     <core:Icon id="huRemainIcon" class="icon" src="sap-icon://product"></core:Icon>
@@ -109,6 +109,7 @@
                         </HBox>
                         <ProgressIndicator
                             width="100%"
+                            height="100%"
                             id="pindicator"
                             class="progressBar"
                             percentValue="{loadProgress}"

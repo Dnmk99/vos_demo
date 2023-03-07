@@ -68,7 +68,7 @@
                                     </Text>
                                 </HBox>
                                 <HBox id="row1-3-2" justifyContent="Start">
-                                    <Text id="label5" class="label" text="Hala: "/>
+                                    <Text id="label5" class="label" text="{i18n>hall}:"/>
                                     <Text id="hallTxt" class="val" text="{hall}"/>
                                 </HBox>
                             </VBox>

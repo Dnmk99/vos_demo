@@ -1,6 +1,48 @@
 let interval;
 let busyDialog = new sap.m.BusyDialog({});
 let browserLanguage = window.navigator.language;
+function checkOrientation() {
+    let orientation = window.orientation;
+    let width = window.innerWidth;
+    let dialog;
+    if (orientation === 0 && width < 860) {
+        let message;
+        if (browserLang.includes('en')) message = "Please turn your device to landscape orientation.";
+        if (browserLang.includes('cs')) message = "Otočte prosím zařízení na šířku.";
+        if (browserLang.includes('de')) message = "Bitte drehen Sie Ihr Gerät ins Querformat.";
+        dialog = new sap.m.Dialog({
+            title: "Device Orientation",
+            type: "Message",
+            content: [
+                new sap.m.Image({
+                    src: "/Images/responsive.png",
+                    width: "100%"
+                }),
+                new sap.m.Text({
+                    text: message
+                })
+            ],
+            beginButton: new sap.m.Button({
+                text: "OK",
+                press: function () {
+                    dialog.close();
+                }
+            })
+        });
+        dialog.addStyleClass("myMessageBox");
+        dialog.open();
+        window.addEventListener("orientationchange", function () {
+            // Check if orientation is landscape
+            if (window.orientation === 90 || window.orientation === -90) {
+                // Close the message box
+                dialog.close();
+            }
+        });
+    }
+}
+window.addEventListener("orientationchange", checkOrientation);
+window.addEventListener("resize", checkOrientation);
+checkOrientation();
 function getData(that){
     const globalModel = sap.ui.getCore().getModel("globalModel");
     const mainContainer = that.getView().byId('mainContainer');
