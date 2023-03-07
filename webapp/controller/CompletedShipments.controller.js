@@ -10,8 +10,6 @@ function checkOrientation() {
         if (browserLang.includes('en')) message = "Please turn your device to landscape orientation.";
         if (browserLang.includes('cs')) message = "Otočte prosím zařízení na šířku.";
         if (browserLang.includes('de')) message = "Bitte drehen Sie Ihr Gerät ins Querformat.";
-        // Define the message box content
-        // Define the message box content
         dialog = new sap.m.Dialog({
             title: "Device Orientation",
             type: "Message",
