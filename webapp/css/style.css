@@ -110,3 +110,43 @@
     padding: 1rem;
     margin: 1rem;
 }
+.myMessageBox .sapUiOverlay {
+    opacity: 0.7;
+    background-color: #000;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+.mainContainer{
+    padding: 1rem;
+}
+
+@media (max-width: 750px) {
+    .label {
+      font-size: 12px; /* Font size when window is smaller than 880px */
+    }
+    .val{
+        font-size: 11px;
+    }
+    .huText{
+        font-size: 22px;
+    }
+    .icon{
+        font-size: 20px;
+    }
+    .asnText{
+        font-size: 11px;
+    }
+    .progressBar{
+        font-size: 12px;
+        margin-top: 0.5rem;
+    }
+    .row1text{
+        font-size: medium;
+    }
+    .borderBot{
+        border: none;
+    }
+    .footerBtnBox{
+        height: 2rem;
+    }
+  }

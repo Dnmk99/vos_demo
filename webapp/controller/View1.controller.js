@@ -1,7 +1,50 @@
 let timer;
-let browserLang = window.navigator.language;
-let windowWidth = window.innerWidth;
-console.log(windowWidth);
+let browserLang = window.navigator.language;;
+function checkOrientation() {
+    let orientation = window.orientation;
+    let width = window.innerWidth;
+    let dialog;
+    if (orientation === 0 && width < 860) {
+        let message;
+        if (browserLang.includes('en')) message = "Please turn your device to landscape orientation.";
+        if (browserLang.includes('cs')) message = "Otočte prosím zařízení na šířku.";
+        if (browserLang.includes('de')) message = "Bitte drehen Sie Ihr Gerät ins Querformat.";
+        // Define the message box content
+        // Define the message box content
+        dialog = new sap.m.Dialog({
+            title: "Device Orientation",
+            type: "Message",
+            content: [
+                new sap.m.Image({
+                    src: "/Images/responsive.png",
+                    width: "100%"
+                }),
+                new sap.m.Text({
+                    text: message
+                })
+            ],
+            beginButton: new sap.m.Button({
+                text: "OK",
+                press: function () {
+                    dialog.close();
+                }
+            })
+        });
+        dialog.addStyleClass("myMessageBox");
+        dialog.open();
+        window.addEventListener("orientationchange", function () {
+            // Check if orientation is landscape
+            if (window.orientation === 90 || window.orientation === -90) {
+                // Close the message box
+                dialog.close();
+            }
+        });
+    }
+}
+window.addEventListener("orientationchange", checkOrientation);
+window.addEventListener("resize", checkOrientation);
+checkOrientation();
+
 function dhm(ms) {
     const days = Math.floor(Number(ms) / (24 * 60 * 60 * 1000));
     const daysms = Number(ms) % (24 * 60 * 60 * 1000);
@@ -31,7 +74,6 @@ function main(dataObj, that) {
     shipmentsModel.oData['Shipments'] = [];
     shipmentsModel.oData['CompletedShipments'] = [];
     shipmentsModel.oData['Refresh'] = new Date().toLocaleTimeString(browserLang);
-    console.log(shipmentsModel.oData.Refresh);
     let progress;
     for (const [key, value] of Object.entries(dataObj)) {
         //date
@@ -105,7 +147,7 @@ function main(dataObj, that) {
         if (shipmentsObj.asnState == "true") {
             shipmentsObj.asnClass = "classGreen";
             if(browserLang.includes('en'))shipmentsObj.asnState = "Sent"; 
-            if(browserLang.includes('cs'))shipmentsObj.asnState = "Odesláno";
+            if(browserLang.includes('cs'))shipmentsObj.asnState = "Odesláno"; 
             if(browserLang.includes('de'))shipmentsObj.asnState = "Gesendet";
             
         } else {
@@ -130,7 +172,6 @@ function main(dataObj, that) {
         }else shipmentsModel.oData.CompletedShipments.push(el);
     });
     that.getView().setModel(shipmentsModel);
-    console.log(shipmentsModel);
     sap.ui.getCore().setModel(shipmentsModel, "globalModel");
 }
 sap.ui.define([
@@ -229,11 +270,12 @@ sap.ui.define([
                 const row1 = oEvent.getSource().getParent().getParent().getItems();
                 const vbox2 = row1[0].getItems()[2];
                 const asnText = vbox2.getItems()[0].getItems()[1];
-                asnText.setText("Odesláno");
+                if(browserLang.includes('en'))asnText.setText("Sent"); 
+                if(browserLang.includes('cs'))asnText.setText("Odesláno");
+                if(browserLang.includes('de'))asnText.setText("Gesendet");
                 asnText.removeStyleClass("asnText");
                 asnText.addStyleClass("asnTrue");
                 oEvent.getSource().setEnabled(false);
-
             },
             onOpenDialog: function (oEvent) {
                 const defaultModel = this.getView().getModel();
