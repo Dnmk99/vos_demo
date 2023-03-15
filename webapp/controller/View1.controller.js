@@ -31,7 +31,9 @@ function checkOrientation() {
             })
         });
         dialog.addStyleClass("myMessageBox");
-        dialog.open();
+        if(window.innerWidth < 860){
+            dialog.open();
+        }
         window.addEventListener("orientationchange", function () {
             // Check if orientation is landscape
             if (window.orientation === 90 || window.orientation === -90) {

@@ -11,20 +11,20 @@
                  <Text id="fragText" class="fragText" text="{fragmentModel>/referenceNumber}"/>
             </VBox>
             <VBox id="cont1" class="fragCont " width="auto" height="100%">
-                <Title id="dispTitle" class="fragTitle" text=""/>
+                <Title id="dispTitle" class="fragTitle" text="Disponent"/>
                 <Text id="fragText1" class="fragText" text="{fragmentModel>/disponent}"/>
             </VBox>
             <VBox id="cont2" class="fragCont " width="auto" height="100%">
-                <Title id="packTypeTxt" class="fragTitle" text=""/>
+                <Title id="packTypeTxt" class="fragTitle" text="Detail"/>
                 <Text id="fragText2" class="fragText" text="{fragmentModel>/packType}"/>
             </VBox>
             <VBox id="cont3" class="fragCont " width="auto" height="100%">
-                <Title id="packInfoTxt" class="fragTitle" text=""/>
+                <Title id="packInfoTxt" class="fragTitle" text="Info"/>
                 <Text id="fragText3" class="fragText" text="{fragmentModel>/packInfo}"/>
             </VBox>
         </content>
         <endButton>
-            <Button id="closeDialogBtn" text="" press=".onCloseDialog"/>
+            <Button id="closeDialogBtn" icon="sap-icon://decline" press=".onCloseDialog"/>
         </endButton>
    </Dialog>
 </core:FragmentDefinition>
